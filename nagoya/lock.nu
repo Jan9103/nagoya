@@ -8,7 +8,7 @@ export def create_lockfile []: nothing -> path {
 export def await_lock [lockfile: path]: nothing -> nothing {
   loop {
     try {
-      "" | save $lock_file
+      "" | save $lockfile
       return
     }
   }
