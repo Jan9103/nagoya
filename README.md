@@ -59,9 +59,12 @@ let que: path = (fgq create)
 fgq push $que {"name": "alice"}
 fgq push_all $que [{"name": "bob"}, {"name": "eve"}, {"name": "mallory"}]
 
-loop {
-  let value = (fgq pop $que)
-  if $value == null { break }  # que is (currently) empty
+let value = (fgq pop $que)
+if $value != null {  # "pop" returns null if the que is empty
+  print $"Hello, ($value.name)!"
+}
+
+for value in (fgq pop_all $que) {
   print $"Hello, ($value.name)!"
 }
 

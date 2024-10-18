@@ -35,6 +35,7 @@ export def push_all [fgq: path, values: list<any>]: nothing -> nothing {
   unlock $lockfile
 }
 
+# returns the next entry from the que and removes it
 # returns null if its currently empty
 export def pop [fgq: path]: nothing -> any {
   let fifo_file: path = ($fgq | path join "a.txt")
@@ -52,3 +53,15 @@ export def pop [fgq: path]: nothing -> any {
   if ($lines | first) == "" {return null}
   return ($lines | first | from nuon)
 }
+
+# returns a list of all entries and removes them from the que
+export def pop_all [fgq: path]: nothing -> list<any> [
+  let fifo_file: path = ($fgq | path join "a.txt")
+
+  let lockfile: path = ($fgq | path join "lock.txt")
+  await_lock $lockfile
+  let raw = (open --raw $fifo_file)
+  "" | save --force $fifo_file
+  unlock $lockfile
+  $raw | lines | each {|i| $i | from nuon}
+]
