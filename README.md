@@ -76,7 +76,38 @@ fgq delete $que
 
 <!------------------------------------------------------------------>
 
+<details><summary><h3>Mutex</h3></summary>
+
+A data-wrapper, which allows multiple threads to read-write access
+the same variable safely.
+
+```nu
+# import library
+use nagoya/mutex.nu
+
+# create a new mutex with a initial value
+let mutex_variable = (mutex new "World")
+
+# change the value
+let name = (input "What is your name? ")
+mutex set $mutex_variable $name
+
+# change the value while blocking all other access to it between the read and write
+mutex change $variable_name {|current_value| $current_value | str pascal-case}
+
+# read the current value
+print $"Hello, (mutex get $mutex_variable)!"
+
+# clean up and delete the mutex
+mutex delete $variable_name
+```
+
+</details>
+
+<!------------------------------------------------------------------>
+
 [tokio]: https://github.com/tokio-rs/tokio
 [def_lock]: https://en.wikipedia.org/wiki/Lock_%28computer_science%29
 [def_queue]: https://en.wikipedia.org/wiki/Queue_%28abstract_data_type%29
+[def_mutex]: https://en.wikipedia.org/wiki/Mutual_exclusion
 [numng]: https://github.com/Jan9103/numng
