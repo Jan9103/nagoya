@@ -106,6 +106,22 @@ mutex delete $variable_name
 
 <!------------------------------------------------------------------>
 
+## Versions
+
+[changelog](./CHANGELOG.md)
+
+### Version system
+
+scheme: `major.minor.patch`:
+
+* patch: non-breaking changes
+  * fixes for not working things
+  * new features
+* minor: breaking changes to the API
+* major: rewrites, or similar drastic changes
+
+recommended version to specify in [numng][]: `~1.0.0`
+
 [tokio]: https://github.com/tokio-rs/tokio
 [def_lock]: https://en.wikipedia.org/wiki/Lock_%28computer_science%29
 [def_queue]: https://en.wikipedia.org/wiki/Queue_%28abstract_data_type%29
