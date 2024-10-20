@@ -93,13 +93,13 @@ let name = (input "What is your name? ")
 mutex set $mutex_variable $name
 
 # change the value while blocking all other access to it between the read and write
-mutex change $variable_name {|current_value| $current_value | str pascal-case}
+mutex change $mutex_variable {|current_value| $current_value | str pascal-case}
 
 # read the current value
 print $"Hello, (mutex get $mutex_variable)!"
 
 # clean up and delete the mutex
-mutex delete $variable_name
+mutex delete $mutex_variable
 ```
 
 </details>
