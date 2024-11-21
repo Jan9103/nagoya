@@ -55,7 +55,7 @@ export def pop [fgq: path]: nothing -> any {
 }
 
 # returns a list of all entries and removes them from the que
-export def pop_all [fgq: path]: nothing -> list<any> [
+export def pop_all [fgq: path]: nothing -> list<any> {
   let fifo_file: path = ($fgq | path join "a.txt")
 
   let lockfile: path = ($fgq | path join "lock.txt")
@@ -64,4 +64,4 @@ export def pop_all [fgq: path]: nothing -> list<any> [
   "" | save --force $fifo_file
   unlock $lockfile
   $raw | lines | each {|i| $i | from nuon}
-]
+}
