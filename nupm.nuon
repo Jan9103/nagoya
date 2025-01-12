@@ -1,0 +1,8 @@
+{
+  name: "nagoya"
+  version: "1.0.3"
+  description: "A multithreading helper library for nushell"
+  maintainers: ["@jan9103"]
+  license: "https://github.com/jan9103/nagoya/blob/main/LICENSE"
+  type: "module"
+}
